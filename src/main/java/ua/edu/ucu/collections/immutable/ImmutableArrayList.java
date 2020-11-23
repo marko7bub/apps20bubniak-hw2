@@ -1,8 +1,7 @@
 package ua.edu.ucu.collections.immutable;
 
-import java.util.Arrays;
 
-public class ImmutableArrayList implements ImmutableList{
+public class ImmutableArrayList implements ImmutableList {
 
 
     private final Object[] array;
@@ -13,7 +12,7 @@ public class ImmutableArrayList implements ImmutableList{
         this.length = 0;
     }
 
-    public ImmutableArrayList(Object[] array){
+    public ImmutableArrayList(Object[] array) {
         this.array = array;
         this.length = array.length;
     }
@@ -26,7 +25,7 @@ public class ImmutableArrayList implements ImmutableList{
 
     @Override
     public ImmutableArrayList add(int index, Object e) {
-        if (index > this.length){
+        if (index > this.length) {
             throw new IndexOutOfBoundsException();
         }
         Object[] element = {e};
@@ -46,7 +45,8 @@ public class ImmutableArrayList implements ImmutableList{
         Object[] finArray = new Object[this.length + c.length];
         System.arraycopy(this.array, 0, finArray, 0, index);
         System.arraycopy(c, 0, finArray, index, c.length);
-        System.arraycopy(this.array, index, finArray, index+c.length, this.length - index);
+        System.arraycopy(this.array, index, finArray,
+                index+c.length, this.length - index);
         return new ImmutableArrayList(finArray);
     }
 
@@ -60,32 +60,34 @@ public class ImmutableArrayList implements ImmutableList{
 
     @Override
     public ImmutableArrayList remove(int index) {
-        if (index > this.length){
+        if (index > this.length) {
             throw new IndexOutOfBoundsException();
         }
         Object[] finArray = new Object[this.length - 1];
         System.arraycopy(this.array, 0, finArray, 0, index);
-        System.arraycopy(this.array, index + 1, finArray, index, this.length - 1 - index);
+        System.arraycopy(this.array, index + 1,
+                finArray, index, this.length - 1 - index);
         return new ImmutableArrayList(finArray);
     }
 
     @Override
     public ImmutableArrayList set(int index, Object e) {
-        if (index > this.length){
+        if (index > this.length) {
             throw new IndexOutOfBoundsException();
         }
         Object[] finArray = new Object[this.length];
         System.arraycopy(this.array, 0, finArray, 0, index);
         finArray[index] = e;
-        System.arraycopy(this.array, index + 1, finArray, index + 1, this.length - 1 - index);
+        System.arraycopy(this.array, index + 1, finArray,
+                index + 1, this.length - 1 - index);
         return new ImmutableArrayList(finArray);
     }
 
     @Override
     public int indexOf(Object e) {
         int counter = 0;
-        for (Object element: this.array){
-            if (element == e){
+        for (Object element: this.array) {
+            if (element == e) {
                 return counter;
             }
             counter += 1;
@@ -115,7 +117,7 @@ public class ImmutableArrayList implements ImmutableList{
 
     public String toString() {
         StringBuffer arrayString = new StringBuffer();
-        for (Object element : this.array) {
+        for (Object element: this.array) {
             if (element == this.array[this.length - 1]) {
                 arrayString.append(element);
             } else {

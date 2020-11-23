@@ -5,8 +5,8 @@ public class ImmutableLinkedList implements ImmutableList {
     private int length;
 
     private static class Node {
-        Object data;
-        Node next;
+        private Object data;
+        private Node next;
 
         public Node() {
             this.data = null;
@@ -102,7 +102,8 @@ public class ImmutableLinkedList implements ImmutableList {
         }
         Object[] finArray = new Object[this.length - 1];
         System.arraycopy(toArray(), 0, finArray, 0, index);
-        System.arraycopy(toArray(), index + 1, finArray, index, this.length - 1 - index);
+        System.arraycopy(toArray(), index + 1,
+                finArray, index, this.length - 1 - index);
         return new ImmutableLinkedList(finArray);
     }
 
@@ -114,7 +115,8 @@ public class ImmutableLinkedList implements ImmutableList {
         Object[] finArray = new Object[this.length];
         System.arraycopy(toArray(), 0, finArray, 0, index);
         finArray[index] = e;
-        System.arraycopy(toArray(), index + 1, finArray, index + 1, this.length - 1 - index);
+        System.arraycopy(toArray(), index + 1,
+                finArray, index + 1, this.length - 1 - index);
         return new ImmutableLinkedList(finArray);
     }
 
